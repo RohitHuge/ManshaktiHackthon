@@ -47,22 +47,28 @@ Use a calm, supportive, non-preachy tone. Ground all advice in retrieved content
             content: query,
         });
 
-        // Create and run with file search
-        const run = await openai.beta.threads.runs.createAndPoll(thread.id, {
-            assistant_id: null, // We're not using a pre-created assistant
-            model: 'gpt-4o',
+        // Create a temporary assistant for this interaction
+        const assistant = await openai.beta.assistants.create({
+            name: "Manashakti Wisdom Guide",
             instructions: systemPrompt,
-            tools: [
-                {
-                    type: 'file_search',
-                },
-            ],
+            model: "gpt-4o",
+            tools: [{ type: "file_search" }],
             tool_resources: {
                 file_search: {
                     vector_store_ids: [VECTOR_STORE_ID],
                 },
             },
         });
+
+        // Create and run with the assistant
+        const run = await openai.beta.threads.runs.createAndPoll(thread.id, {
+            assistant_id: assistant.id,
+        });
+
+        // Clean up: Delete the assistant after use
+        // Note: In production, you might want to reuse a single assistant instead of creating one per request
+        // But for this stateless architecture, we'll clean up
+        await openai.beta.assistants.del(assistant.id);
 
         // Check if the run completed successfully
         if (run.status !== 'completed') {
@@ -135,18 +141,19 @@ Use a calm, supportive, non-preachy tone. Ground all advice in retrieved content
 export async function uploadPDFToVectorStore(fileBuffer, fileName) {
     try {
         // Upload the file to OpenAI
+        // OpenAI SDK expects a File object (Node 18+) or ReadStream
         const file = await openai.files.create({
-            file: new Blob([fileBuffer], { type: 'application/pdf' }),
+            file: new File([fileBuffer], fileName, { type: 'application/pdf' }),
             purpose: 'assistants',
         });
 
         // Add file to the existing vector store
-        await openai.beta.vectorStores.files.create(VECTOR_STORE_ID, {
+        await openai.vectorStores.files.create(VECTOR_STORE_ID, {
             file_id: file.id,
         });
 
         // Poll until the file is processed
-        let vectorStoreFile = await openai.beta.vectorStores.files.retrieve(
+        let vectorStoreFile = await openai.vectorStores.files.retrieve(
             VECTOR_STORE_ID,
             file.id
         );
@@ -154,7 +161,7 @@ export async function uploadPDFToVectorStore(fileBuffer, fileName) {
         // Wait for processing (simple polling)
         while (vectorStoreFile.status === 'in_progress') {
             await new Promise((resolve) => setTimeout(resolve, 1000));
-            vectorStoreFile = await openai.beta.vectorStores.files.retrieve(
+            vectorStoreFile = await openai.vectorStores.files.retrieve(
                 VECTOR_STORE_ID,
                 file.id
             );
