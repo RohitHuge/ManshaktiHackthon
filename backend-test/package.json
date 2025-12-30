@@ -1,14 +1,26 @@
 {
-    "name": "manashakti-test-backend",
+    "name": "manashakti-wisdom-backend",
     "version": "1.0.0",
-    "description": "Test backend for Manashakti Wisdom frontend",
+    "description": "Stateless backend API for AI-powered Wisdom-on-Demand system",
     "main": "server.js",
     "type": "module",
     "scripts": {
-        "start": "node server.js"
+        "start": "node server.js",
+        "dev": "node --watch server.js"
     },
+    "keywords": [
+        "wisdom",
+        "manashakti",
+        "openai",
+        "vector-search"
+    ],
+    "author": "",
+    "license": "MIT",
     "dependencies": {
         "express": "^4.18.2",
+        "openai": "^4.67.3",
+        "multer": "^1.4.5-lts.1",
+        "dotenv": "^16.3.1",
         "cors": "^2.8.5"
     }
 }
