@@ -51,7 +51,7 @@ const VoiceInput = ({ onTranscript, disabled = false }) => {
     if (!isSupported) {
         return (
             <button
-                className="p-2.5 glass border border-gray-600 rounded-lg opacity-40 cursor-not-allowed"
+                className="p-2.5 bg-gray-50 border border-gray-200 rounded-lg opacity-40 cursor-not-allowed"
                 disabled
                 title="Voice input not supported in this browser. Please use Chrome or Edge."
             >
@@ -62,18 +62,18 @@ const VoiceInput = ({ onTranscript, disabled = false }) => {
 
     return (
         <button
-            className={`relative p-2.5 rounded-lg transition-all duration-300 ${isListening
-                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 animate-pulse shadow-lg shadow-purple-500/50'
-                    : 'glass border border-purple-500/50 hover:border-purple-400 hover:shadow-lg hover:shadow-purple-500/30'
-                } ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:scale-110 active:scale-95'}`}
+            className={`relative p-3 rounded-xl transition-all duration-300 ${isListening
+                    ? 'bg-brand-secondary text-white animate-pulse shadow-lg shadow-brand-secondary/30'
+                    : 'bg-white border-2 border-gray-200 hover:border-brand-secondary hover:text-brand-secondary text-gray-500'
+                } ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:scale-105 active:scale-95'}`}
             onClick={toggleListening}
             disabled={disabled}
             title={isListening ? "Stop listening" : "Start voice input (English)"}
             aria-label={isListening ? "Stop listening" : "Start voice input"}
         >
-            <Mic size={20} className="text-white" />
+            <Mic size={20} />
             {isListening && (
-                <span className="absolute inset-0 rounded-lg bg-purple-500 opacity-50 animate-ping"></span>
+                <span className="absolute inset-0 rounded-xl bg-brand-secondary opacity-30 animate-ping"></span>
             )}
         </button>
     );

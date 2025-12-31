@@ -9,14 +9,14 @@ const PRESET_QUESTIONS = [
 const PresetQuestions = ({ onSelectQuestion }) => {
     return (
         <div className="mb-6">
-            <p className="text-sm text-gray-400 mb-3 font-medium">
+            <p className="text-sm text-brand-text-secondary mb-3 font-medium">
                 ✨ Quick questions to get started:
             </p>
             <div className="flex flex-wrap gap-3">
                 {PRESET_QUESTIONS.map((question, index) => (
                     <button
                         key={index}
-                        className="px-4 py-2.5 text-sm font-medium text-white glass border-2 border-purple-500/50 rounded-full hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:border-transparent hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 active:scale-95"
+                        className="px-4 py-2.5 text-sm font-medium text-brand-text-main bg-white border border-gray-200 rounded-full hover:bg-brand-primary hover:text-white hover:border-brand-primary hover:shadow-lg transition-all duration-300 active:scale-95"
                         onClick={() => onSelectQuestion(question)}
                     >
                         {question}

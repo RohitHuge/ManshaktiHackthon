@@ -113,28 +113,28 @@ const UploadPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 p-6">
+        <div className="min-h-screen bg-brand-bg p-6 font-sans">
             <div className="max-w-2xl mx-auto">
                 {/* Header */}
                 <div className="mb-8">
                     <a
                         href="/"
-                        className="flex items-center gap-2 text-purple-600 hover:text-purple-800 mb-4 transition-colors"
+                        className="flex items-center gap-2 text-brand-secondary hover:text-brand-primary mb-4 transition-colors font-medium"
                     >
                         <ArrowLeft size={20} />
                         <span>Back to Chat</span>
                     </a>
-                    <h1 className="text-4xl font-bold text-gray-800 mb-2">Admin: Upload PDF</h1>
-                    <p className="text-gray-600">Add new wisdom documents to the vector store</p>
+                    <h1 className="text-4xl font-bold text-brand-primary mb-2 font-spiritual">Admin: Upload PDF</h1>
+                    <p className="text-brand-text-secondary">Add new wisdom documents to the vector store</p>
                 </div>
 
                 {/* Upload Card */}
-                <div className="bg-white rounded-2xl shadow-lg p-8">
+                <div className="bg-white rounded-2xl shadow-card p-8 border border-gray-100">
                     {/* Drag & Drop Area */}
                     <div
                         className={`border-2 border-dashed rounded-xl p-12 text-center transition-all ${dragActive
-                                ? 'border-purple-500 bg-purple-50'
-                                : 'border-gray-300 hover:border-purple-400'
+                            ? 'border-brand-secondary bg-brand-secondary/5'
+                            : 'border-gray-300 hover:border-brand-secondary'
                             }`}
                         onDragEnter={handleDrag}
                         onDragLeave={handleDrag}
@@ -151,11 +151,11 @@ const UploadPage = () => {
 
                         <label htmlFor="file-upload" className="cursor-pointer">
                             <Upload
-                                className={`mx-auto mb-4 ${dragActive ? 'text-purple-500' : 'text-gray-400'
+                                className={`mx-auto mb-4 ${dragActive ? 'text-brand-secondary' : 'text-gray-400'
                                     }`}
                                 size={48}
                             />
-                            <p className="text-lg font-medium text-gray-700 mb-2">
+                            <p className="text-lg font-medium text-brand-text-main mb-2">
                                 {dragActive ? 'Drop your PDF here' : 'Click to upload or drag and drop'}
                             </p>
                             <p className="text-sm text-gray-500">PDF files only (max 10MB)</p>
@@ -164,12 +164,12 @@ const UploadPage = () => {
 
                     {/* Selected File Info */}
                     {selectedFile && (
-                        <div className="mt-6 p-4 bg-purple-50 rounded-lg flex items-center justify-between">
+                        <div className="mt-6 p-4 bg-gray-50 rounded-lg flex items-center justify-between border border-gray-200">
                             <div className="flex items-center gap-3">
-                                <FileText className="text-purple-600" size={24} />
+                                <FileText className="text-brand-primary" size={24} />
                                 <div>
-                                    <p className="font-medium text-gray-800">{selectedFile.name}</p>
-                                    <p className="text-sm text-gray-600">{formatFileSize(selectedFile.size)}</p>
+                                    <p className="font-medium text-brand-text-main">{selectedFile.name}</p>
+                                    <p className="text-sm text-gray-500">{formatFileSize(selectedFile.size)}</p>
                                 </div>
                             </div>
                             <button
@@ -178,7 +178,7 @@ const UploadPage = () => {
                                     setUploadStatus(null);
                                     setUploadMessage('');
                                 }}
-                                className="text-gray-500 hover:text-red-600 transition-colors"
+                                className="text-gray-400 hover:text-red-600 transition-colors"
                             >
                                 <XCircle size={20} />
                             </button>
@@ -189,9 +189,9 @@ const UploadPage = () => {
                     <button
                         onClick={handleUpload}
                         disabled={!selectedFile || uploading}
-                        className={`w-full mt-6 py-3 px-6 rounded-lg font-medium text-white transition-all ${!selectedFile || uploading
-                                ? 'bg-gray-300 cursor-not-allowed'
-                                : 'bg-purple-600 hover:bg-purple-700 active:scale-95'
+                        className={`w-full mt-6 py-3 px-6 rounded-lg font-medium text-white transition-all shadow-md hover:shadow-lg ${!selectedFile || uploading
+                            ? 'bg-gray-300 cursor-not-allowed'
+                            : 'bg-brand-secondary hover:bg-brand-secondary/90 active:scale-95'
                             }`}
                     >
                         {uploading ? (
@@ -208,8 +208,8 @@ const UploadPage = () => {
                     {uploadStatus && (
                         <div
                             className={`mt-6 p-4 rounded-lg flex items-start gap-3 ${uploadStatus === 'success'
-                                    ? 'bg-green-50 border border-green-200'
-                                    : 'bg-red-50 border border-red-200'
+                                ? 'bg-green-50 border border-green-200'
+                                : 'bg-red-50 border border-red-200'
                                 }`}
                         >
                             {uploadStatus === 'success' ? (
@@ -236,22 +236,22 @@ const UploadPage = () => {
 
                     {/* Info Section */}
                     <div className="mt-8 pt-6 border-t border-gray-200">
-                        <h3 className="font-semibold text-gray-800 mb-3">Important Notes:</h3>
-                        <ul className="space-y-2 text-sm text-gray-600">
+                        <h3 className="font-semibold text-brand-text-main mb-3">Important Notes:</h3>
+                        <ul className="space-y-2 text-sm text-brand-text-secondary">
                             <li className="flex items-start gap-2">
-                                <span className="text-purple-600 mt-1">•</span>
+                                <span className="text-brand-accent mt-1">•</span>
                                 <span>Only PDF files are accepted</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="text-purple-600 mt-1">•</span>
+                                <span className="text-brand-accent mt-1">•</span>
                                 <span>Maximum file size is 10MB</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="text-purple-600 mt-1">•</span>
+                                <span className="text-brand-accent mt-1">•</span>
                                 <span>Files are added to the existing vector store</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="text-purple-600 mt-1">•</span>
+                                <span className="text-brand-accent mt-1">•</span>
                                 <span>Processing may take a few moments after upload</span>
                             </li>
                         </ul>

@@ -6,38 +6,38 @@ const SourceCard = ({ source, onViewDocument }) => {
 
     return (
         <div className="ml-0 mb-6 animate-slide-up">
-            <div className="p-5 bg-gradient-to-r from-amber-500/20 to-orange-500/20 backdrop-blur-lg border-2 border-amber-500/50 border-l-4 rounded-xl shadow-xl hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300">
+            <div className="p-5 bg-gradient-to-r from-brand-accent/10 to-transparent border-l-4 border-l-brand-accent rounded-r-xl rounded-bl-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-amber-400">
-                        📚 Source
+                    <span className="text-xs font-bold uppercase tracking-wider text-brand-accent text-opacity-90">
+                        📚 Source Material
                     </span>
                 </div>
 
                 <div className="space-y-2">
                     {source.book && (
                         <div className="flex items-center gap-2">
-                            <BookOpen size={18} className="text-amber-400 flex-shrink-0" />
-                            <span className="font-spiritual text-white text-base">{source.book}</span>
+                            <BookOpen size={18} className="text-brand-primary flex-shrink-0" />
+                            <span className="font-spiritual text-brand-primary font-semibold text-base">{source.book}</span>
                         </div>
                     )}
 
                     {source.chapter && (
                         <div className="flex items-center gap-2 ml-6">
-                            <span className="text-gray-300 italic text-sm">{source.chapter}</span>
+                            <span className="text-brand-text-secondary italic text-sm">{source.chapter}</span>
                         </div>
                     )}
 
                     {source.page && (
                         <div className="flex items-center gap-2">
-                            <FileText size={18} className="text-amber-400 flex-shrink-0" />
-                            <span className="text-gray-200">Page {source.page}</span>
+                            <FileText size={18} className="text-brand-secondary flex-shrink-0" />
+                            <span className="text-brand-text-secondary font-medium">Page {source.page}</span>
                         </div>
                     )}
                 </div>
 
                 {source.pdfUrl && (
                     <button
-                        className="mt-4 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium rounded-lg shadow-lg hover:shadow-xl hover:shadow-amber-500/50 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2"
+                        className="mt-4 px-5 py-2.5 bg-brand-accent hover:bg-yellow-500 text-brand-primary font-bold rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex items-center gap-2 text-sm"
                         onClick={() => onViewDocument(source.pdfUrl, source.page || 1)}
                     >
                         <FileText size={18} />
@@ -46,8 +46,8 @@ const SourceCard = ({ source, onViewDocument }) => {
                 )}
 
                 {source.confidence && (
-                    <div className="mt-4 pt-4 border-t border-amber-500/30">
-                        <span className="text-sm text-gray-400 italic">
+                    <div className="mt-4 pt-4 border-t border-brand-accent/20">
+                        <span className="text-sm text-brand-text-secondary italic">
                             Confidence: {source.confidence.matchedPrinciples}/{source.confidence.totalPrinciples} principles matched
                         </span>
                     </div>
