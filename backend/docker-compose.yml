@@ -17,7 +17,7 @@ services:
 
   sbert:
     build:
-      context: ./sbert
+      context: ./pyservices
       dockerfile: Dockerfile
     container_name: sbert-service
     restart: unless-stopped

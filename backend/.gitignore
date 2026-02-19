@@ -21,3 +21,5 @@ Thumbs.db
 # Temporary files
 uploads/
 *.tmp
+
+qdrant_data/
