@@ -131,8 +131,9 @@ const ChatInterface = () => {
                     </button>
 
                     <div className="text-center">
-                        <h1 className="text-xl md:text-2xl font-spiritual font-bold">
-                            <span className="text-brand-primary">🕉️ Manashakti</span> <span className="text-brand-secondary">Wisdom</span>
+                        <h1 className="text-xl md:text-2xl font-spiritual font-bold flex items-center justify-center gap-2">
+                            <img src="/Untitled_design-removebg-preview.png" alt="Manashakti Logo" className="h-8 w-auto" />
+                            <span className="text-brand-primary">Manashakti</span> <span className="text-brand-secondary">Wisdom</span>
                         </h1>
                     </div>
 

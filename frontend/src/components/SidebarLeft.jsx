@@ -19,7 +19,8 @@ const SidebarLeft = () => {
             {/* Branding */}
             <div className="p-6 border-b border-white/10">
                 <h1 className="text-2xl font-spiritual font-bold text-white flex items-center gap-2">
-                    <span>🕉️</span> Manashakti
+                    <img src="/WhatsApp Image 2025-12-31 at 5.03.47 PM.jpeg" alt="Manashakti Logo" className="h-10 w-auto rounded-full" />
+                    Manashakti
                 </h1>
                 <p className="text-xs text-brand-secondary mt-1 pl-8 font-medium">Wisdom on Demand</p>
             </div>
@@ -33,8 +34,8 @@ const SidebarLeft = () => {
                         key={item.path}
                         onClick={() => navigate(item.path)}
                         className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group ${isActive(item.path)
-                                ? 'bg-brand-secondary text-white shadow-lg'
-                                : 'text-gray-300 hover:bg-white/10 hover:text-white'
+                            ? 'bg-brand-secondary text-white shadow-lg'
+                            : 'text-gray-300 hover:bg-white/10 hover:text-white'
                             }`}
                     >
                         <item.icon
